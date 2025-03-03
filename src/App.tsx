@@ -1,35 +1,14 @@
-
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
 import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import { useEffect } from "react";
+import SoundEffects from "@/components/SoundEffects";
 
-const queryClient = new QueryClient();
-
-const App = () => {
-  // Set dark mode as default theme
-  useEffect(() => {
-    document.documentElement.classList.add("dark");
-  }, []);
-
+function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <>
+      <SoundEffects />
+      <Index />
+    </>
   );
-};
+}
 
 export default App;
