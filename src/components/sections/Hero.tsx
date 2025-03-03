@@ -1,12 +1,15 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { playSoundEffect } from "../SoundEffects";
 
 export default function Hero() {
+  const navigate = useNavigate();
+
   return (
-    <section id="home" className="section relative flex flex-col justify-center items-center text-center">
+    <section className="section relative flex flex-col justify-center items-center text-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
@@ -28,7 +31,7 @@ export default function Hero() {
             className="font-medium rounded-full" 
             onClick={() => {
               playSoundEffect("click");
-              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+              navigate("/contact");
             }}
           >
             Get in Touch
@@ -40,7 +43,7 @@ export default function Hero() {
             className="font-medium rounded-full" 
             onClick={() => {
               playSoundEffect("click");
-              document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+              navigate("/projects");
             }}
           >
             View Projects
@@ -55,7 +58,7 @@ export default function Hero() {
           className="rounded-full h-10 w-10"
           onClick={() => {
             playSoundEffect("click");
-            document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
+            navigate("/about");
           }}
         >
           <ArrowDown className="h-6 w-6" />

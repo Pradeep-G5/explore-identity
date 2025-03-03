@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   CommandDialog,
   CommandEmpty,
@@ -28,17 +29,19 @@ interface CommandPaletteProps {
 }
 
 export default function CommandPalette({ open, setOpen }: CommandPaletteProps) {
+  const navigate = useNavigate();
+  
   const links = [
     {
       group: "Navigation",
       items: [
-        { name: "Home", icon: <Home className="mr-2 h-4 w-4" />, href: "#home" },
-        { name: "About", icon: <User className="mr-2 h-4 w-4" />, href: "#about" },
-        { name: "Experience", icon: <Briefcase className="mr-2 h-4 w-4" />, href: "#experience" },
-        { name: "Activity", icon: <Activity className="mr-2 h-4 w-4" />, href: "#activity" },
-        { name: "Journey", icon: <Map className="mr-2 h-4 w-4" />, href: "#journey" },
-        { name: "Projects", icon: <FolderKanban className="mr-2 h-4 w-4" />, href: "#projects" },
-        { name: "Contact", icon: <Mail className="mr-2 h-4 w-4" />, href: "#contact" },
+        { name: "Home", icon: <Home className="mr-2 h-4 w-4" />, href: "/" },
+        { name: "About", icon: <User className="mr-2 h-4 w-4" />, href: "/about" },
+        { name: "Experience", icon: <Briefcase className="mr-2 h-4 w-4" />, href: "/experience" },
+        { name: "Activity", icon: <Activity className="mr-2 h-4 w-4" />, href: "/activity" },
+        { name: "Journey", icon: <Map className="mr-2 h-4 w-4" />, href: "/journey" },
+        { name: "Projects", icon: <FolderKanban className="mr-2 h-4 w-4" />, href: "/projects" },
+        { name: "Contact", icon: <Mail className="mr-2 h-4 w-4" />, href: "/contact" },
       ],
     },
     {
@@ -56,10 +59,10 @@ export default function CommandPalette({ open, setOpen }: CommandPaletteProps) {
     playSoundEffect("command");
     
     setTimeout(() => {
-      if (href.startsWith("#")) {
-        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-      } else {
+      if (href.startsWith("http") || href.startsWith("mailto")) {
         window.open(href, "_blank");
+      } else {
+        navigate(href);
       }
     }, 200);
   };

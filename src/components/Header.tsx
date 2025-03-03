@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { CommandDialog, CommandInput, CommandList } from "@/components/ui/command";
 import ThemeToggle from "./ThemeToggle";
@@ -13,19 +14,20 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Activity", href: "#activity" },
-  { label: "Journey", href: "#journey" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Experience", href: "/experience" },
+  { label: "Activity", href: "/activity" },
+  { label: "Journey", href: "/journey" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,25 +66,28 @@ export default function Header() {
       )}
     >
       <div className="flex items-center justify-between">
-        <a 
-          href="#home" 
+        <Link 
+          to="/" 
           className="font-bold text-xl tracking-tight"
           onClick={() => playSoundEffect("click")}
         >
           Portfolio
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href={item.href}
-              className="text-sm font-medium transition-colors link-hover"
+              to={item.href}
+              className={cn(
+                "text-sm font-medium transition-colors link-hover",
+                location.pathname === item.href && "text-primary font-semibold"
+              )}
               onClick={() => playSoundEffect("click")}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -122,16 +127,19 @@ export default function Header() {
           <ul className="space-y-4">
             {navItems.map((item) => (
               <li key={item.label}>
-                <a
-                  href={item.href}
-                  className="block py-2 text-base"
+                <Link
+                  to={item.href}
+                  className={cn(
+                    "block py-2 text-base",
+                    location.pathname === item.href && "text-primary font-semibold"
+                  )}
                   onClick={() => {
                     setMobileMenuOpen(false);
                     playSoundEffect("click");
                   }}
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
