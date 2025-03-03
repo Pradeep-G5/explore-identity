@@ -23,15 +23,14 @@ export default function Projects() {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="relative bg-card/60 backdrop-blur-sm overflow-hidden border border-border/50 hover:border-primary/50 transition-all duration-300 flex flex-col animate-fade-in group min-h-[400px]"
+              className="relative bg-card/60 backdrop-blur-sm overflow-hidden border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-2 animate-fade-in group"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              {/* Main card content - visible by default */}
               <div className="overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               
@@ -39,9 +38,9 @@ export default function Projects() {
                 <CardTitle className="text-xl">{project.title}</CardTitle>
               </CardHeader>
               
-              <CardContent className="flex-1">
+              <CardContent>
                 <p className="text-muted-foreground mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <Badge key={tech} variant="secondary" className="font-normal">
                       {tech}
@@ -77,72 +76,6 @@ export default function Projects() {
                   </Button>
                 </div>
               </CardFooter>
-              
-              {/* Overlay card content - visible on hover */}
-              <div className="absolute inset-0 bg-card/95 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col p-6 overflow-y-auto">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex flex-col">
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="font-normal">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      className="h-8 w-8 rounded-full"
-                      onClick={() => {
-                        playSoundEffect("click");
-                        window.open("https://github.com/yourusername/project", "_blank");
-                      }}
-                    >
-                      <Github className="h-4 w-4" />
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      className="h-8 w-8 rounded-full"
-                      onClick={() => {
-                        playSoundEffect("click");
-                        window.open(project.link, "_blank");
-                      }}
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-                
-                <p className="text-foreground mb-6 flex-1">{project.description}</p>
-                
-                <div className="flex gap-3 mt-auto">
-                  <Button 
-                    variant="outline" 
-                    className="flex-1 flex items-center justify-center gap-2"
-                    onClick={() => {
-                      playSoundEffect("click");
-                      window.open("https://github.com/yourusername/project", "_blank");
-                    }}
-                  >
-                    <Github className="h-4 w-4" />
-                    GitHub
-                  </Button>
-                  <Button 
-                    className="flex-1 flex items-center justify-center gap-2"
-                    onClick={() => {
-                      playSoundEffect("click");
-                      window.open(project.link, "_blank");
-                    }}
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    Live Demo
-                  </Button>
-                </div>
-              </div>
             </Card>
           ))}
         </div>
