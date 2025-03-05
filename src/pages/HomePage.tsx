@@ -11,9 +11,6 @@ export default function HomePage() {
   return (
     <PageLayout>
       <Hero />
-      <About />
-      <Projects />
-      <Activity />
       <ScrollToTop />
     </PageLayout>
   );
