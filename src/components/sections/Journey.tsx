@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import { journeyPoints } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Map, ChevronDown } from "lucide-react";
+import { Map, ChevronDown, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { playSoundEffect } from "../SoundEffects";
 
@@ -23,7 +22,12 @@ export default function Journey() {
           <span className="title-gradient">My Journey</span>
         </h2>
         
-        <div className="relative max-w-4xl mx-auto">
+        {/* Subtitle */}
+        <p className="text-lg text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+          Trying not to compare myself to others. Taking baby steps everyday.
+        </p>
+        
+        <div className="relative max-w-4xl mx-auto pb-20">
           {/* Timeline line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border"></div>
           
@@ -31,9 +35,24 @@ export default function Journey() {
           {displayPoints.map((point, index) => {
             const isPresent = point.year === presentYear;
             return (
-            <div key={index} className="relative mb-12 animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
+            <div key={index} className="relative mb-16 animate-fade-in" style={{ animationDelay: `${index * 150}ms` }}>
+              {/* Icon on timeline with glow effect for present */}
+              <div className={`absolute left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/2 z-10 ${
+                isPresent ? 'text-primary' : 'text-muted-foreground'
+              }`}>
+                <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
+                  isPresent 
+                    ? 'bg-primary/10 ring-2 ring-primary animate-pulse' 
+                    : 'bg-secondary'
+                }`}>
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+              </div>
+              
               {/* Year indicator */}
-              <div className={`absolute left-1/2 transform -translate-x-1/2 -top-4 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium z-20 ${isPresent ? 'animate-pulse-light' : ''}`}>
+              <div className={`absolute left-1/2 transform -translate-x-1/2 -top-10 px-3 py-1 rounded-md text-sm font-medium z-20 ${
+                isPresent ? 'bg-primary text-primary-foreground' : 'bg-secondary/80 text-foreground'
+              }`}>
                 {point.year}
               </div>
               
@@ -44,17 +63,12 @@ export default function Journey() {
                   <p className="text-muted-foreground">{point.description}</p>
                 </CardContent>
               </Card>
-              
-              {/* Circle on timeline with glow effect for present */}
-              <div className={`absolute left-1/2 top-0 transform -translate-x-1/2 w-4 h-4 rounded-full ${
-                isPresent ? 'bg-primary shadow-[0_0_10px_2px_hsl(var(--primary))] animate-float' : 'bg-primary'
-              }`}></div>
             </div>
           )})}
           
           {/* Show more/less button */}
-          {!showAll && (
-            <div className="flex justify-center my-8">
+          {!showAll && reversedPoints.length > 2 && (
+            <div className="flex justify-center mt-2 mb-12">
               <Button 
                 variant="outline" 
                 className="gap-2"
@@ -70,7 +84,7 @@ export default function Journey() {
           )}
           
           {showAll && (
-            <div className="flex justify-center my-8">
+            <div className="flex justify-center mt-2 mb-12">
               <Button 
                 variant="outline" 
                 className="gap-2"

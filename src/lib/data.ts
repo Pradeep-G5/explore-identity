@@ -18,18 +18,21 @@ export const experiences = [
     company: "Tech Solutions Inc.",
     period: "2021 - Present",
     description: "Led the development of a comprehensive web application using React and TypeScript, improving user engagement by 40%. Mentored junior developers and implemented best practices for code quality and performance.",
+    certificateLink: "#",
   },
   {
     title: "Frontend Developer",
     company: "Digital Innovations",
     period: "2018 - 2021",
     description: "Developed responsive web applications with modern JavaScript frameworks. Collaborated with designers to implement pixel-perfect UIs and optimized application performance.",
+    certificateLink: "#",
   },
   {
     title: "Web Developer",
     company: "Creative Web Services",
     period: "2016 - 2018",
     description: "Built and maintained websites for various clients. Utilized HTML, CSS, and JavaScript to create engaging user experiences. Managed client relationships and project timelines.",
+    certificateLink: "#",
   },
 ];
 

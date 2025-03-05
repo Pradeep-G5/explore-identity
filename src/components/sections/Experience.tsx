@@ -2,7 +2,10 @@
 import React from "react";
 import { experiences } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Briefcase } from "lucide-react";
+import { Briefcase, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { playSoundEffect } from "../SoundEffects";
 
 export default function Experience() {
   return (
@@ -20,9 +23,34 @@ export default function Experience() {
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                  {exp.title}
-                </CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
+                    {exp.title}
+                  </CardTitle>
+                  
+                  {exp.certificateLink && (
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-8 w-8"
+                            onClick={() => {
+                              playSoundEffect("click");
+                              window.open(exp.certificateLink, '_blank');
+                            }}
+                          >
+                            <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-primary" />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>View Certificate</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )}
+                </div>
                 <div className="bg-secondary rounded-full p-2 group-hover:bg-primary/10 transition-colors duration-300">
                   <Briefcase className="h-5 w-5 text-primary" />
                 </div>
