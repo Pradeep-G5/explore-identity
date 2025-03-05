@@ -1,43 +1,85 @@
 
 import React from "react";
 import { activities } from "@/lib/data";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Activity as ActivityIcon, Lightbulb, BookOpen, Users } from "lucide-react";
-
-const activityIcons = [Lightbulb, BookOpen, Users];
+import { Activity as ActivityIcon, Lightbulb, BookOpen, Users, ExternalLink } from "lucide-react";
 
 export default function Activity() {
   return (
-    <section id="activity" className="section bg-secondary/20">
+    <section id="activity" className="section">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          <span className="title-gradient">Activities & Interests</span>
+        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
+          <span className="title-gradient">Activity</span>
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {activities.map((activity, index) => {
-            const Icon = activityIcons[index % activityIcons.length];
+        <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">
+          List my activity.
+        </p>
+        
+        <div className="max-w-4xl mx-auto space-y-16">
+          {/* Things I Learned Section */}
+          <div className="space-y-6 animate-fade-in">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-primary/10 p-2 rounded-lg">
+                <Lightbulb className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold">Things I learned</h3>
+            </div>
             
-            return (
-              <Card 
-                key={index} 
-                className="border border-border/50 shadow-sm bg-card/50 backdrop-blur-sm hover:shadow-md transition-all duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                <CardHeader className="flex flex-col items-center pb-4 pt-6 text-center">
-                  <div className="p-3 bg-secondary/80 rounded-full mb-4">
-                    <Icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{activity.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center pb-8">
-                  <CardDescription className="text-muted-foreground text-base">
-                    {activity.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            );
-          })}
+            <ul className="space-y-4 ml-6">
+              {activities.slice(0, 2).map((activity, index) => (
+                <li key={index} className="list-disc ml-4">
+                  <a 
+                    href="#" 
+                    className="text-lg hover:text-primary transition-colors duration-300 border-b border-dashed border-border/40 pb-1"
+                  >
+                    {activity.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          {/* Reading List Section */}
+          <div className="space-y-6 animate-fade-in" style={{ animationDelay: "200ms" }}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-accent/10 p-2 rounded-lg">
+                <BookOpen className="h-5 w-5 text-accent-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold">Reading List</h3>
+            </div>
+            
+            <ul className="space-y-4 ml-6">
+              <li className="list-disc ml-4">
+                <a 
+                  href="#" 
+                  className="text-lg hover:text-primary transition-colors duration-300 border-b border-dashed border-border/40 pb-1"
+                >
+                  One Machine Learning Question Everyday
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Bookmarks Section */}
+          <div className="space-y-6 animate-fade-in" style={{ animationDelay: "400ms" }}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-secondary p-2 rounded-lg">
+                <ExternalLink className="h-5 w-5 text-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold">Bookmark</h3>
+            </div>
+            
+            <ul className="space-y-4 ml-6">
+              <li className="list-disc ml-4">
+                <a 
+                  href="#" 
+                  className="text-lg hover:text-primary transition-colors duration-300 border-b border-dashed border-border/40 pb-1"
+                >
+                  Trending color palettes
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>

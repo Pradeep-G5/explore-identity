@@ -27,7 +27,11 @@ export default function About() {
               <h3 className="text-xl font-medium">My Skills</h3>
               <div className="flex flex-wrap gap-2">
                 {about.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary" className="px-3 py-1 text-sm">
+                  <Badge 
+                    key={skill} 
+                    variant="secondary" 
+                    className="px-3 py-1.5 text-sm font-medium bg-secondary/80 hover:bg-primary/10 transition-colors duration-300"
+                  >
                     {skill}
                   </Badge>
                 ))}
@@ -35,18 +39,20 @@ export default function About() {
             </div>
           </div>
           
-          <Card className="overflow-hidden border-0 shadow-lg bg-card/50 backdrop-blur-sm animate-fade-in">
-            <CardContent className="p-0">
-              <div className="relative aspect-square overflow-hidden">
-                <img
-                  src="/placeholder.svg"
-                  alt="Your Name"
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="flex justify-center">
+            <Card className="overflow-hidden border-0 shadow-lg bg-card/50 backdrop-blur-sm animate-fade-in w-3/4 max-w-xs">
+              <CardContent className="p-0">
+                <div className="relative aspect-square overflow-hidden">
+                  <img
+                    src="/placeholder.svg"
+                    alt="Your Name"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
         
         <div className="my-12 space-y-6 max-w-3xl mx-auto">

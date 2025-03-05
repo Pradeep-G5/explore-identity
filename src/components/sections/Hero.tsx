@@ -68,17 +68,17 @@ export default function Hero() {
         </div>
       </div>
       
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-float">
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
         <Button 
-          variant="ghost" 
+          variant="outline" 
           size="icon" 
-          className="rounded-full h-10 w-10"
+          className="rounded-full h-10 w-10 shadow-md hover:shadow-lg transition-all duration-300 bg-background/80 backdrop-blur-sm"
           onClick={() => {
             playSoundEffect("click");
             navigate("/about");
           }}
         >
-          <ArrowDown className="h-6 w-6" />
+          <ArrowDown className="h-6 w-6 text-primary" />
         </Button>
       </div>
     </section>
