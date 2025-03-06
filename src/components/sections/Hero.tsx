@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowDown, FileText } from "lucide-react";
+import { ChevronDown, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { playSoundEffect } from "../SoundEffects";
 
@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="z-10 space-y-6 max-w-3xl mx-auto px-6">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in">
           <span className="title-gradient">Hello, I'm </span>
-          <span className="block mt-2">Your Name</span>
+          <span className="block mt-2 text-primary">Your Name</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "200ms", animationFillMode: "forwards" }}>
@@ -68,18 +68,21 @@ export default function Hero() {
         </div>
       </div>
       
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <Button 
-          variant="outline" 
-          size="icon" 
-          className="rounded-full h-10 w-10 shadow-md hover:shadow-lg transition-all duration-300 bg-background/80 backdrop-blur-sm"
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-pulse">
+        <div 
+          className="flex flex-col items-center gap-2 cursor-pointer"
           onClick={() => {
             playSoundEffect("click");
             navigate("/about");
           }}
         >
-          <ArrowDown className="h-6 w-6 text-primary" />
-        </Button>
+          <span className="text-primary font-medium">Discover More</span>
+          <div className="flex space-x-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }}></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "150ms" }}></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "300ms" }}></div>
+          </div>
+        </div>
       </div>
     </section>
   );
