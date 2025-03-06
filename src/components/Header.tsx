@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
 import CommandPalette from "./CommandPalette";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { playSoundEffect } from "./SoundEffects";
 
 interface NavItem {
@@ -24,7 +24,6 @@ const navItems: NavItem[] = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
   const location = useLocation();
 
@@ -49,16 +48,6 @@ export default function Header() {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-    playSoundEffect("click");
-  };
-
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
 
   return (
     <header
@@ -112,7 +101,7 @@ export default function Header() {
 
           <ThemeToggle />
 
-          {/* Mobile menu button - now opens command palette on mobile instead */}
+          {/* Mobile menu button - opens command palette */}
           <button
             className="block md:hidden p-2"
             onClick={() => {
