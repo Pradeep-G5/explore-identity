@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { playSoundEffect } from "../SoundEffects";
 
@@ -17,7 +17,7 @@ export default function Hero() {
       
       <div className="z-10 space-y-6 max-w-3xl mx-auto px-6">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in">
-          <span className="title-gradient">Hello, I'm </span>
+          <span className="text-foreground">Hello, I'm </span>
           <span className="block mt-2 text-primary">Your Name</span>
         </h1>
         
@@ -68,7 +68,7 @@ export default function Hero() {
         </div>
       </div>
       
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-pulse">
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
         <div 
           className="flex flex-col items-center gap-2 cursor-pointer"
           onClick={() => {
