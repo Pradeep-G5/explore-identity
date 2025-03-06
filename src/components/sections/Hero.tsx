@@ -17,7 +17,7 @@ export default function Hero() {
       
       <div className="z-10 space-y-6 max-w-3xl mx-auto px-6">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in">
-          <span className="text-foreground">Hello, I'm </span>
+          <span className="text-foreground text-2xl md:text-3xl lg:text-4xl font-medium">Hello, I'm </span>
           <span className="block mt-2 text-primary">Your Name</span>
         </h1>
         
