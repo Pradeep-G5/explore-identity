@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { CommandDialog, CommandInput, CommandList } from "@/components/ui/command";
 import ThemeToggle from "./ThemeToggle";
 import CommandPalette from "./CommandPalette";
 import { Menu, X } from "lucide-react";
@@ -56,6 +55,11 @@ export default function Header() {
     playSoundEffect("click");
   };
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
     <header
       className={cn(
@@ -98,6 +102,7 @@ export default function Header() {
               playSoundEffect("command");
             }}
             className="p-2 rounded-lg text-sm flex items-center gap-2 bg-secondary/60 hover:bg-secondary transition-colors duration-200"
+            aria-label="Open command menu"
           >
             <span className="hidden md:inline-block">Search...</span>
             <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-background px-1.5 text-[10px] font-medium opacity-100">
@@ -107,46 +112,25 @@ export default function Header() {
 
           <ThemeToggle />
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button - now opens command palette on mobile instead */}
           <button
-            className="block md:hidden"
-            onClick={toggleMobileMenu}
+            className="block md:hidden p-2"
+            onClick={() => {
+              setCommandOpen(true);
+              playSoundEffect("click");
+            }}
+            aria-label="Open search and navigation"
           >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            <Menu className="h-6 w-6" />
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <nav className="md:hidden py-4 animate-fade-in">
-          <ul className="space-y-4">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <Link
-                  to={item.href}
-                  className={cn(
-                    "block py-2 text-base",
-                    location.pathname === item.href && "text-primary font-semibold"
-                  )}
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    playSoundEffect("click");
-                  }}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-
-      <CommandPalette open={commandOpen} setOpen={setCommandOpen} />
+      <CommandPalette 
+        open={commandOpen} 
+        setOpen={setCommandOpen} 
+        showNavigation={true}
+      />
     </header>
   );
 }

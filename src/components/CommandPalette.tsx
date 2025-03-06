@@ -22,13 +22,15 @@ import {
   AtSign
 } from "lucide-react";
 import { playSoundEffect } from "./SoundEffects";
+import { DialogTitle } from "@/components/ui/dialog";
 
 interface CommandPaletteProps {
   open: boolean;
   setOpen: (open: boolean) => void;
+  showNavigation?: boolean;
 }
 
-export default function CommandPalette({ open, setOpen }: CommandPaletteProps) {
+export default function CommandPalette({ open, setOpen, showNavigation = false }: CommandPaletteProps) {
   const navigate = useNavigate();
   
   const links = [
@@ -69,6 +71,7 @@ export default function CommandPalette({ open, setOpen }: CommandPaletteProps) {
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
+      <DialogTitle className="sr-only">Search and Navigation</DialogTitle>
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
