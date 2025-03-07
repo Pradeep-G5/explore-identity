@@ -27,7 +27,7 @@ export default function Journey() {
           Trying not to compare myself to others. Taking baby steps everyday.
         </p>
         
-        <div className="relative max-w-4xl mx-auto pb-20">
+        <div className="relative max-w-4xl mx-auto pb-28">
           {/* Timeline line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border"></div>
           
@@ -66,9 +66,9 @@ export default function Journey() {
             </div>
           )})}
           
-          {/* Show more/less button */}
-          {!showAll && reversedPoints.length > 2 && (
-            <div className="flex justify-center mt-2 mb-12">
+          {/* Show more/less button - positioned with more space from the timeline */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 bottom-4 z-20 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full">
+            {!showAll && reversedPoints.length > 2 && (
               <Button 
                 variant="outline" 
                 className="gap-2"
@@ -80,11 +80,9 @@ export default function Journey() {
                 <span>Show Full Journey</span>
                 <ChevronDown className="h-4 w-4" />
               </Button>
-            </div>
-          )}
-          
-          {showAll && (
-            <div className="flex justify-center mt-2 mb-12">
+            )}
+            
+            {showAll && (
               <Button 
                 variant="outline" 
                 className="gap-2"
@@ -96,8 +94,8 @@ export default function Journey() {
                 <span>Show Less</span>
                 <ChevronDown className="h-4 w-4 rotate-180" />
               </Button>
-            </div>
-          )}
+            )}
+          </div>
           
           {/* End point */}
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
