@@ -51,29 +51,33 @@ export default function Projects() {
               
               <CardFooter className="pt-2">
                 <div className="flex gap-2 ml-auto">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="rounded-full flex items-center gap-1 text-xs"
-                    onClick={() => {
-                      playSoundEffect("click");
-                      window.open("https://github.com/yourusername/project", "_blank");
-                    }}
-                  >
-                    <Github className="h-3 w-3" />
-                    GitHub
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    className="rounded-full flex items-center gap-1 text-xs"
-                    onClick={() => {
-                      playSoundEffect("click");
-                      window.open(project.link, "_blank");
-                    }}
-                  >
-                    <ExternalLink className="h-3 w-3" />
-                    Demo
-                  </Button>
+                  {project.github && (
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="rounded-full flex items-center gap-1 text-xs"
+                      onClick={() => {
+                        playSoundEffect("click");
+                        window.open(project.github, "_blank");
+                      }}
+                    >
+                      <Github className="h-3 w-3" />
+                      GitHub
+                    </Button>
+                  )}
+                  {project.link && (
+                    <Button 
+                      size="sm" 
+                      className="rounded-full flex items-center gap-1 text-xs"
+                      onClick={() => {
+                        playSoundEffect("click");
+                        window.open(project.link, "_blank");
+                      }}
+                    >
+                      <ExternalLink className="h-3 w-3" />
+                      Demo
+                    </Button>
+                  )}
                 </div>
               </CardFooter>
             </Card>

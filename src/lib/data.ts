@@ -89,6 +89,7 @@ export const projects = [
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     image: "/placeholder.svg",
     link: "#",
+    github: "https://github.com/yourusername/ecommerce-platform"
   },
   {
     title: "Task Management App",
@@ -96,6 +97,7 @@ export const projects = [
     technologies: ["React", "Redux", "Firebase"],
     image: "/placeholder.svg",
     link: "#",
+    github: "https://github.com/yourusername/task-manager"
   },
   {
     title: "Social Media Dashboard",
@@ -103,6 +105,7 @@ export const projects = [
     technologies: ["TypeScript", "Next.js", "TailwindCSS"],
     image: "/placeholder.svg",
     link: "#",
+    github: "https://github.com/yourusername/social-dashboard"
   },
   {
     title: "Weather Application",
@@ -110,6 +113,7 @@ export const projects = [
     technologies: ["JavaScript", "WeatherAPI", "CSS"],
     image: "/placeholder.svg",
     link: "#",
+    github: "https://github.com/yourusername/weather-app"
   },
 ];
 
