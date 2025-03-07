@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
 import CommandPalette from "./CommandPalette";
-import { Menu } from "lucide-react";
 import { playSoundEffect } from "./SoundEffects";
 
 interface NavItem {
@@ -100,18 +99,6 @@ export default function Header() {
           </button>
 
           <ThemeToggle />
-
-          {/* Mobile menu button - opens command palette */}
-          <button
-            className="block md:hidden p-2"
-            onClick={() => {
-              setCommandOpen(true);
-              playSoundEffect("click");
-            }}
-            aria-label="Open search and navigation"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
         </div>
       </div>
 
