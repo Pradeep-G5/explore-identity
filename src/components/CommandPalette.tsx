@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   CommandDialog,
   CommandEmpty,
@@ -32,6 +32,7 @@ interface CommandPaletteProps {
 
 export default function CommandPalette({ open, setOpen, showNavigation = false }: CommandPaletteProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   
   const links = [
     {
@@ -69,6 +70,14 @@ export default function CommandPalette({ open, setOpen, showNavigation = false }
     }, 200);
   };
 
+  // Helper function to check if an item is active based on the current location
+  const isActive = (href: string): boolean => {
+    if (href === "/") {
+      return location.pathname === href;
+    }
+    return location.pathname === href;
+  };
+
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
       <DialogTitle className="sr-only">Search and Navigation</DialogTitle>
@@ -81,10 +90,15 @@ export default function CommandPalette({ open, setOpen, showNavigation = false }
               <CommandItem
                 key={item.name}
                 onSelect={() => handleSelect(item.href)}
-                className="flex items-center"
+                className={`flex items-center ${isActive(item.href) ? 'bg-accent text-accent-foreground font-medium' : ''}`}
               >
                 {item.icon}
                 <span>{item.name}</span>
+                {isActive(item.href) && !item.external && (
+                  <span className="ml-auto text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-sm">
+                    Current
+                  </span>
+                )}
                 {item.external && (
                   <span className="ml-auto text-xs text-muted-foreground">
                     Opens in new tab

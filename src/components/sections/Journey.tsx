@@ -50,7 +50,7 @@ export default function Journey() {
               </div>
               
               {/* Year indicator */}
-              <div className={`absolute left-1/2 transform -translate-x-1/2 -top-10 px-3 py-1 rounded-md text-sm font-medium z-20 ${
+              <div className={`absolute left-1/2 transform -translate-x-1/2 -top-12 px-3 py-1 rounded-md text-sm font-medium z-20 ${
                 isPresent ? 'bg-primary text-primary-foreground' : 'bg-secondary/80 text-foreground'
               }`}>
                 {point.year}
